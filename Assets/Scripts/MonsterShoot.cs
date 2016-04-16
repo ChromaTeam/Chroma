@@ -18,7 +18,13 @@ public class MonsterShoot : MonoBehaviour {
 
     public GameObject shootPrefab;
 
+    //Cadence de tir
     private int timer = 0;
+
+    //audio:
+    public AudioClip normalAudio;
+    public AudioClip attackAudio;
+    public AudioSource source;
 
     // Use this for initialization
     void Start()
@@ -36,6 +42,13 @@ public class MonsterShoot : MonoBehaviour {
 
         if (distanceToPlayer < 10 && distanceToPlayer > 2)
         {
+
+            source.clip = attackAudio;
+            if (!source.isPlaying)
+            {
+                source.Play();
+            }
+
             direction = transform.position.x - player.transform.position.x;
             if (direction > 0)
             {
@@ -60,6 +73,11 @@ public class MonsterShoot : MonoBehaviour {
         else
         {
             //Default animation
+            source.clip = normalAudio;
+            if (!source.isPlaying)
+            {
+                source.Play();
+            }
         }
     }
 
