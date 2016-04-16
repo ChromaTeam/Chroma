@@ -14,7 +14,7 @@ public class EnemyDeath : MonoBehaviour {
     private AudioSource audioSource;
     
     void Start() {
-        renderer = GetComponent<Renderer>();
+        renderer = GetComponent<SpriteRenderer>();
         transform = gameObject.transform;
         audioSource = GetComponent<AudioSource>();
     }
