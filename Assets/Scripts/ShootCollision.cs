@@ -16,12 +16,22 @@ public class ShootCollision : MonoBehaviour {
 	}
 	
 	private void ExplosionSound() {
-		AudioSource.PlayClipAtPoint(explosionSound, gameObject.transform.position);
+		if(explosionSound) {
+			AudioSource.PlayClipAtPoint(explosionSound, gameObject.transform.position);
+		}
+		else {
+			Debug.Log("No sound for explosion");
+		}
 	}
 
 	private void ExplosionWork (Collision2D col) {
-		GameObject explosion = (GameObject) Instantiate(explosionPrefab,transform.position,Quaternion.identity);
-		Destroy(explosion, 3.0f);
+		if(explosionPrefab) {
+			GameObject explosion = (GameObject) Instantiate(explosionPrefab,transform.position,Quaternion.identity);
+			Destroy(explosion, 3.0f);
+		}
+		else {
+			Debug.Log("No object for explosion");
+		}
 		
 		Collider2D collider = col.collider;
 		
