@@ -5,7 +5,7 @@ public class PlayerShoot : MonoBehaviour {
 
 	public GameObject shootPrefab;
 	private Transform myTransform;
-	public float propulsionForce = 30f;
+	public float propulsionForce = 2f;
 
 	// Use this for initialization
 	void Start () {
