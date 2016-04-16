@@ -34,20 +34,16 @@ public class Monster : MonoBehaviour {
         if (distanceToPlayer < 10 && distanceToPlayer > 2)
         {
             direction = transform.position.x - player.transform.position.x;
-            //monster return to original position
             anchorRotation = Quaternion.Euler(0f, 0f, atanAnchor * Mathf.Rad2Deg);
-            //Debug.Log(anchorRotation.eulerAngles.z);
             if (direction > 0)
             {
                 rotation.eulerAngles = new Vector3(0, 180, 0);
                 transform.rotation = rotation;
-                Debug.Log("droite");
             }
             else
             {
                 rotation.eulerAngles = new Vector3(0, 0, 0);
                 transform.rotation = rotation;
-                Debug.Log("gauche");
             }
 
             transform.Translate(4 * Time.deltaTime, 0, 0);
