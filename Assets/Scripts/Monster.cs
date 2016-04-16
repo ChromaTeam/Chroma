@@ -19,7 +19,7 @@ public class Monster : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Debug.Log("monster ready");
+        Debug.Log("Classic monster ready");
         player = GameObject.Find("Player");
     }
 	
@@ -34,7 +34,6 @@ public class Monster : MonoBehaviour {
         if (distanceToPlayer < 10 && distanceToPlayer > 2)
         {
             direction = transform.position.x - player.transform.position.x;
-            anchorRotation = Quaternion.Euler(0f, 0f, atanAnchor * Mathf.Rad2Deg);
             if (direction > 0)
             {
                 rotation.eulerAngles = new Vector3(0, 180, 0);
@@ -53,19 +52,17 @@ public class Monster : MonoBehaviour {
         {
             direction = transform.position.x - anchor.transform.position.x;
             //monster return to original position
-            anchorRotation = Quaternion.Euler(0f, 0f, atanAnchor * Mathf.Rad2Deg);
+            //anchorRotation = Quaternion.Euler(0f, 0f, atanAnchor * Mathf.Rad2Deg);
             //Debug.Log(anchorRotation.eulerAngles.z);
             if (direction > 0 )
             {
                 rotation.eulerAngles = new Vector3(0, 180, 0);
                 transform.rotation = rotation;
-                Debug.Log("droite");
             }
             else
             {
                 rotation.eulerAngles = new Vector3(0, 0, 0);
                 transform.rotation = rotation;
-                Debug.Log("gauche");
             }
             
             transform.Translate(2 * Time.deltaTime, 0, 0);

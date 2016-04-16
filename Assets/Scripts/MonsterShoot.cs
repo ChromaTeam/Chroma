@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MonsterAirBlast : MonoBehaviour {
+public class MonsterShoot : MonoBehaviour {
 
     public GameObject player;
     public float distanceToPlayer;
@@ -10,12 +10,20 @@ public class MonsterAirBlast : MonoBehaviour {
     private float direction;
     private float blastDirection;
 
+    private Vector2 shootDirection;
+
     public Quaternion rotation = Quaternion.identity;
+
+    public float propulsionForce = 2f;
+
+    public GameObject shootPrefab;
+
+    private int timer = 0;
 
     // Use this for initialization
     void Start()
     {
-        Debug.Log("AirBlast monster ready");
+        Debug.Log("Shoot monster ready");
         player = GameObject.Find("Player");
     }
 
@@ -41,15 +49,25 @@ public class MonsterAirBlast : MonoBehaviour {
                 transform.rotation = rotation;
                 blastDirection = 1;
             }
-
-            //transform.Translate(1 * Time.deltaTime, 0, 0);
-            //player.GetComponent<Rigidbody2D>().AddForce(transform.forward * 2);
-            player.transform.Translate(blastDirection * Time.deltaTime, 0, 0);
+            timer++;
+            if (timer > 100)
+            {
+                timer = 0;
+                Throw();
+            }
         }
 
         else
         {
             //Default animation
         }
+    }
+
+    void Throw()
+    {
+        GameObject go = (GameObject)Instantiate(shootPrefab, transform.TransformPoint(3f, 0, 0), transform.rotation);
+        shootDirection = player.transform.position - transform.position;
+        go.GetComponent<Rigidbody2D>().AddForce(shootDirection * propulsionForce, ForceMode2D.Impulse);
+        Destroy(go, 10);
     }
 }
