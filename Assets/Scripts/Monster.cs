@@ -11,6 +11,7 @@ public class Monster : MonoBehaviour {
     private Vector3 anchorDiff;
     private float atanPlayer;
     private float atanAnchor;
+    private float direction;
 
     public Quaternion rotation = Quaternion.identity;
 
@@ -20,7 +21,7 @@ public class Monster : MonoBehaviour {
     void Start () {
         Debug.Log("monster ready");
         player = GameObject.Find("Player");
-}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -32,16 +33,11 @@ public class Monster : MonoBehaviour {
         atanAnchor = Mathf.Atan2(anchorDiff.y, anchorDiff.x);
         if (distanceToPlayer < 10 && distanceToPlayer > 2)
         {
-            //monster move to player position
-            transform.rotation = Quaternion.Euler(0f, 0f, atanPlayer * Mathf.Rad2Deg);
-            transform.Translate(2*Time.deltaTime, 0, 0);
-        }
-        
-        else if (distanceToAnchor > 2)
-        {
+            direction = transform.position.x - player.transform.position.x;
             //monster return to original position
             anchorRotation = Quaternion.Euler(0f, 0f, atanAnchor * Mathf.Rad2Deg);
-            if (anchorRotation.z < 0)
+            //Debug.Log(anchorRotation.eulerAngles.z);
+            if (direction > 0)
             {
                 rotation.eulerAngles = new Vector3(0, 180, 0);
                 transform.rotation = rotation;
@@ -49,7 +45,29 @@ public class Monster : MonoBehaviour {
             }
             else
             {
-                rotation.eulerAngles = new Vector3(0, -180, 0);
+                rotation.eulerAngles = new Vector3(0, 0, 0);
+                transform.rotation = rotation;
+                Debug.Log("gauche");
+            }
+
+            transform.Translate(4 * Time.deltaTime, 0, 0);
+        }
+        
+        else if (distanceToAnchor > 2)
+        {
+            direction = transform.position.x - anchor.transform.position.x;
+            //monster return to original position
+            anchorRotation = Quaternion.Euler(0f, 0f, atanAnchor * Mathf.Rad2Deg);
+            //Debug.Log(anchorRotation.eulerAngles.z);
+            if (direction > 0 )
+            {
+                rotation.eulerAngles = new Vector3(0, 180, 0);
+                transform.rotation = rotation;
+                Debug.Log("droite");
+            }
+            else
+            {
+                rotation.eulerAngles = new Vector3(0, 0, 0);
                 transform.rotation = rotation;
                 Debug.Log("gauche");
             }
