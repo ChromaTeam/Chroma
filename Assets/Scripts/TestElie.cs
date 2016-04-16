@@ -5,7 +5,7 @@ public class TestElie : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	    Debug.Log("Heeeeeeey")
+	    Debug.Log("Heeeeeeey");
 	}
 	
 	// Update is called once per frame
