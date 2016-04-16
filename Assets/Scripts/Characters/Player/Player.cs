@@ -56,25 +56,14 @@ public class Player : MonoBehaviour
             GainSkill();
             Destroy(other.gameObject);
         }
-        if (other.tag == "Ennemy")
-        {
-            Debug.Log("Ennemy hit !");
-            if (hitTimer > 100)
-            {
-                Debug.Log("Ennemy and stayed enough to be hit !");
-                LoseSkill();
-                hitTimer = 0;
-            }
-            
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Ennemy")
+        if (other.gameObject.tag == "Enemy")
         {
             Debug.Log("Ennemy hit !!!");
-            if (hitTimer > 100)
+            if (hitTimer > 50)
             {
                 Debug.Log("Ennemy and stayed enough to be hit !");
                 LoseSkill();
