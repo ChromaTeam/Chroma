@@ -1,27 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Movement : MonoBehaviour 
+public class Movement : Skill 
 {
 	[SerializeField]
 	private float m_Speed;
-
-	[SerializeField]
-	private float m_JumpSpeed;
 
 	[SerializeField]
 	private Rigidbody2D m_Rigidbody;
 
 	private Vector2 m_Velocity;
 
-	public void Jump()
+	private void OnDisable()
 	{
-		m_Velocity.y = m_JumpSpeed;
-		m_Rigidbody.velocity = m_Velocity;
+		//script disabled since we lost the power to move, reset velocity to zero
+		m_Rigidbody.velocity = Vector2.zero;
 	}
 
 	public void Move(Vector2 axisValues)
 	{
+		if (!enabled)
+		{
+			return;
+		}
+
 		//normalize vector if needed
 		if (axisValues.magnitude > 1f)
 		{
