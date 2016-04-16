@@ -13,7 +13,16 @@ public class Player : MonoBehaviour
 
 	private int m_activeSkillCounter = -1;
 
-	public void GainSkill()
+    //Timer between each hit the player receive by staying close to an ennemy
+    private int hitTimer = 0;
+
+    void Update()
+    {
+        hitTimer++;
+    }
+
+
+    public void GainSkill()
 	{
 		m_activeSkillCounter = Mathf.Min(m_Skills.Length - 1, m_activeSkillCounter + 1);
 		SetSkill(true, m_activeSkillCounter);
@@ -38,4 +47,26 @@ public class Player : MonoBehaviour
 	{
 		m_Skills[m_activeSkillCounter].enabled = isEnabled;
 	}
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "Orbe")
+        {
+            Debug.Log("Just found a new color orbe");
+            GainSkill();
+            Destroy(other.gameObject);
+        }
+        if (other.tag == "Ennemy")
+        {
+            if (hitTimer > 100)
+            {
+                Debug.Log("Ennemy hit !");
+                LoseSkill();
+                Destroy(other.gameObject);
+                hitTimer = 0;
+            }
+            
+        }
+
+    }
 }

@@ -75,12 +75,12 @@ public class Monster : MonoBehaviour {
             //monster return to original position
             //anchorRotation = Quaternion.Euler(0f, 0.f, atanAnchor * Mathf.Rad2Deg);
             //Debug.Log(anchorRotation.eulerAngles.z);
-            if (direction > 0 )
+            if (direction > 0.5f )
             {
                 rotation.eulerAngles = new Vector3(0, 180, 0);
                 transform.rotation = rotation;
             }
-            else
+            else if(direction < 0.5f)
             {
                 rotation.eulerAngles = new Vector3(0, 0, 0);
                 transform.rotation = rotation;
