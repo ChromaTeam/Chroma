@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
+
 using System.Collections;
 
 public class Player : MonoBehaviour 
@@ -6,12 +8,17 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private Skill[] m_Skills;
 
+	[SerializeField]
+	private SetParameter[] m_MusicParameters;
+
 	private int m_activeSkillCounter = -1;
 
 	public void GainSkill()
 	{
 		m_activeSkillCounter = Mathf.Min(m_Skills.Length - 1, m_activeSkillCounter + 1);
 		SetSkill(true, m_activeSkillCounter);
+
+		m_MusicParameters[m_activeSkillCounter].Play();
 	}
 
 	public void LoseSkill()
@@ -22,6 +29,8 @@ public class Player : MonoBehaviour
 		}
 
 		SetSkill(false, m_activeSkillCounter);
+		m_MusicParameters[m_activeSkillCounter].Rewind();
+
 		m_activeSkillCounter = Mathf.Max(-1, m_activeSkillCounter - 1);
 	}
 
