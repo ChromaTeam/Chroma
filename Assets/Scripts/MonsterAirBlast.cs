@@ -12,6 +12,11 @@ public class MonsterAirBlast : MonoBehaviour {
 
     public Quaternion rotation = Quaternion.identity;
 
+    //audio:
+    public AudioClip normalAudio;
+    public AudioClip attackAudio;
+    public AudioSource source;
+
     // Use this for initialization
     void Start()
     {
@@ -28,6 +33,13 @@ public class MonsterAirBlast : MonoBehaviour {
 
         if (distanceToPlayer < 10 && distanceToPlayer > 2)
         {
+
+            source.clip = attackAudio;
+            if (!source.isPlaying)
+            {
+                source.Play();
+            }
+
             direction = transform.position.x - player.transform.position.x;
             if (direction > 0)
             {
@@ -50,6 +62,11 @@ public class MonsterAirBlast : MonoBehaviour {
         else
         {
             //Default animation
+            source.clip = normalAudio;
+            if (!source.isPlaying)
+            {
+                source.Play();
+            }
         }
     }
 }

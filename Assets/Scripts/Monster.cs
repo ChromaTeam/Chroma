@@ -65,14 +65,12 @@ public class Monster : MonoBehaviour {
         //Si le monstre n'est pas loin de son ancre il s'arrete et relance son bruitage de base
         else if (distanceToAnchor > 2)
         {
-            Debug.Log(source.isPlaying);
-            source.clip = attackAudio;
+            source.clip = normalAudio;
             if (!source.isPlaying)
             {
                 source.Play();
             }
-            source.clip = normalAudio;
-            source.Play();
+
             direction = transform.position.x - anchor.transform.position.x;
             //monster return to original position
             //anchorRotation = Quaternion.Euler(0f, 0.f, atanAnchor * Mathf.Rad2Deg);
