@@ -7,10 +7,10 @@ public class Monster : MonoBehaviour {
     public GameObject anchor;
     public float distanceToPlayer;
     public float distanceToAnchor;
-    private Vector3 v_diff;
-    private Vector3 anchorDiff;
-    private float atanPlayer;
-    private float atanAnchor;
+    //private Vector3 v_diff;
+    //private Vector3 anchorDiff;
+    //private float atanPlayer;
+    //private float atanAnchor;
     private float direction;
 
     public Quaternion rotation = Quaternion.identity;
@@ -33,10 +33,10 @@ public class Monster : MonoBehaviour {
     void Update () {
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
         distanceToAnchor = Vector3.Distance(transform.position, anchor.transform.position);
-        v_diff = (player.transform.position - transform.position);
-        anchorDiff = (anchor.transform.position - transform.position);
-        atanPlayer = Mathf.Atan2(v_diff.y, v_diff.x);
-        atanAnchor = Mathf.Atan2(anchorDiff.y, anchorDiff.x);
+        //v_diff = (player.transform.position - transform.position);
+        //anchorDiff = (anchor.transform.position - transform.position);
+        //atanPlayer = Mathf.Atan2(v_diff.y, v_diff.x);
+        //atanAnchor = Mathf.Atan2(anchorDiff.y, anchorDiff.x);
 
         //Si le monstre n'est pas loin du joueur il se dirige vers lui et lance un son / musique d'attaque
         if (distanceToPlayer < 10 && distanceToPlayer > 2)
@@ -75,12 +75,12 @@ public class Monster : MonoBehaviour {
             //monster return to original position
             //anchorRotation = Quaternion.Euler(0f, 0.f, atanAnchor * Mathf.Rad2Deg);
             //Debug.Log(anchorRotation.eulerAngles.z);
-            if (direction > 0.5f )
+            if (direction > 1 )
             {
                 rotation.eulerAngles = new Vector3(0, 180, 0);
                 transform.rotation = rotation;
             }
-            else if(direction < 0.5f)
+            else if(direction < 1)
             {
                 rotation.eulerAngles = new Vector3(0, 0, 0);
                 transform.rotation = rotation;

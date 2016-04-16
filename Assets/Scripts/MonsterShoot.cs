@@ -5,10 +5,10 @@ public class MonsterShoot : MonoBehaviour {
 
     public GameObject player;
     public float distanceToPlayer;
-    private Vector3 v_diff;
-    private float atanPlayer;
+    //private Vector3 v_diff;
+    //private float atanPlayer;
     private float direction;
-    private float blastDirection;
+    //private float blastDirection;
 
     private Vector2 shootDirection;
 
@@ -37,8 +37,8 @@ public class MonsterShoot : MonoBehaviour {
     void Update()
     {
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-        v_diff = (player.transform.position - transform.position);
-        atanPlayer = Mathf.Atan2(v_diff.y, v_diff.x);
+        //v_diff = (player.transform.position - transform.position);
+        //atanPlayer = Mathf.Atan2(v_diff.y, v_diff.x);
 
         if (distanceToPlayer < 10 && distanceToPlayer > 2)
         {
@@ -54,13 +54,13 @@ public class MonsterShoot : MonoBehaviour {
             {
                 rotation.eulerAngles = new Vector3(0, 180, 0);
                 transform.rotation = rotation;
-                blastDirection = -1;
+                //blastDirection = -1;
             }
             else
             {
                 rotation.eulerAngles = new Vector3(0, 0, 0);
                 transform.rotation = rotation;
-                blastDirection = 1;
+                //blastDirection = 1;
             }
             timer++;
             if (timer > 100)

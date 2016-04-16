@@ -5,8 +5,8 @@ public class MonsterAirBlast : MonoBehaviour {
 
     public GameObject player;
     public float distanceToPlayer;
-    private Vector3 v_diff;
-    private float atanPlayer;
+    //private Vector3 v_diff;
+    //private float atanPlayer;
     private float direction;
     private float blastDirection;
 
@@ -28,8 +28,8 @@ public class MonsterAirBlast : MonoBehaviour {
     void Update()
     {
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-        v_diff = (player.transform.position - transform.position);
-        atanPlayer = Mathf.Atan2(v_diff.y, v_diff.x);
+        //v_diff = (player.transform.position - transform.position);
+        //atanPlayer = Mathf.Atan2(v_diff.y, v_diff.x);
 
         if (distanceToPlayer < 10 && distanceToPlayer > 2)
         {
