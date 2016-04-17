@@ -9,6 +9,7 @@ public class ShowText : MonoBehaviour {
 	private int m_writtenTextLength;
 	public Text textUI;
 	
+	[TextArea(3,10)]
 	public string text;
 	
 	public float speed;
@@ -17,11 +18,15 @@ public class ShowText : MonoBehaviour {
 	void Start () {
 		m_deltaTime = 0.0f;
 		
-		m_writingText = false;
+		m_writingText = true;
+	}
+	
+	void OnEnable() {
+		Play();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if(m_writingText) {
 			if(m_deltaTime < 1/speed)
 				m_deltaTime += Time.deltaTime;
@@ -30,6 +35,13 @@ public class ShowText : MonoBehaviour {
 				m_writtenTextLength++;
 				
 				textUI.text = text.Substring(0, m_writtenTextLength);
+				
+				if(text[m_writtenTextLength - 1] == '.') {
+					m_deltaTime -= 1f;
+				}
+				else if(text[m_writtenTextLength - 1] == '\n') {
+					m_deltaTime -= 2;
+				}
 				
 				if(m_writtenTextLength == text.Length) {
 					m_writingText = false;

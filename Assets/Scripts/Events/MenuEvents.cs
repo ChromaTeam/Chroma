@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class MenuEvents : MonoBehaviour {
 
 	public void OnPlay () {
-		SceneManager.LoadScene("1stLevel_Main");
+		SceneManager.LoadScene("1stLevel_Mehdi");
 	}
 	
 	public void OnCredits () {
