@@ -31,10 +31,10 @@ public class ShootCollision : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D col) {
 		Debug.Log("Object hit !");
-		ExplosionSound();
-		ExplosionWork(col);
-		
+		//ExplosionSound();
+		//ExplosionWork(col);
 		Destroy(gameObject);
+        Destroy(col.gameObject);
 	}
 	
 	private void ExplosionSound() {
