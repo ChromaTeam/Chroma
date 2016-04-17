@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Audio;
 
 using System.Collections.Generic;
@@ -14,7 +15,12 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private List<Orb> m_Orbs;
 
+	[SerializeField]
+	private UnityEvent OnHit;
+
 	private int m_activeSkillCounter = -1;
+
+	private bool m_IsInvulnerable;
 
     //Timer between each hit the player receive by staying close to an ennemy
     private int hitTimer = 0;
@@ -65,9 +71,26 @@ public class Player : MonoBehaviour
 		m_activeSkillCounter = Mathf.Max(-1, m_activeSkillCounter - 1);
 	}
 
+	public void SetInvulnerable(bool isInvulnerable)
+	{
+		m_IsInvulnerable = isInvulnerable;
+	}
+
 	private void SetSkill(bool isEnabled, int counter)
 	{
 		m_Orbs[m_activeSkillCounter].EnableSkill(isEnabled);
+	}
+
+	private void Hit()
+	{
+		if (!m_IsInvulnerable)
+		{
+			LoseSkill();
+		}
+
+		m_IsInvulnerable = false;
+
+		OnHit.Invoke();
 	}
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -84,6 +107,17 @@ public class Player : MonoBehaviour
 				orb.Collected();
 			}
         }
+        //poing du boss uniquement
+        if (other.tag == "Enemy")
+        {
+            Debug.Log("Hit by boss fist");
+            if (hitTimer > 50)
+            {
+                Debug.Log("Ennemy and stayed enough to be hit !");
+                LoseSkill();
+                hitTimer = 0;
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -94,7 +128,7 @@ public class Player : MonoBehaviour
             if (hitTimer > 50)
             {
                 Debug.Log("Ennemy and stayed enough to be hit !");
-                LoseSkill();
+				Hit();
                 hitTimer = 0;
             }
         }

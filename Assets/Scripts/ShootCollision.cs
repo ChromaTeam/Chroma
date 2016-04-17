@@ -7,6 +7,28 @@ public class ShootCollision : MonoBehaviour {
 	public GameObject explosionPrefab;
 	public AudioClip explosionSound;
 
+	public float direction;
+	public float propulsionForce = 2f;
+
+	public Rigidbody2D projectileRigidbody;
+
+	public SpriteRenderer[] sprites;
+
+	public void Shoot()
+	{
+		projectileRigidbody.AddForce(direction * Vector2.right * propulsionForce, ForceMode2D.Impulse);
+	}
+
+	public void SetDirection(float shootDirection)
+	{
+		foreach(var sprite in sprites)
+		{
+			sprite.flipX = shootDirection < 0;
+		}
+
+		direction = shootDirection;
+	}
+
 	void OnCollisionEnter2D (Collision2D col) {
 		Debug.Log("Object hit !");
 		ExplosionSound();
