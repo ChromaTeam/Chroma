@@ -7,6 +7,8 @@ public class PlayerShoot : MonoBehaviour
 	public Transform projectileParent;
 	public Transform shootSpawnPosition;
 
+	public bool hasTerminator;
+
 	public float direction = 1f;
 
 	public Animator animator;
@@ -42,5 +44,10 @@ public class PlayerShoot : MonoBehaviour
 	public void ShootButtonUp()
 	{
 		animator.SetTrigger("Stop");
+	}
+
+	public void SetTerminator(bool isEnabled)
+	{
+		hasTerminator = isEnabled;
 	}
 }
