@@ -33,8 +33,12 @@ public class ShootCollision : MonoBehaviour {
 		Debug.Log("Object hit !");
 		//ExplosionSound();
 		//ExplosionWork(col);
+        if(col.gameObject.tag == "Enemy")
+        {
+            Destroy(col.gameObject);
+        }
 		Destroy(gameObject);
-        Destroy(col.gameObject);
+        
 	}
 	
 	private void ExplosionSound() {
