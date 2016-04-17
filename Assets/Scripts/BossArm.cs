@@ -15,6 +15,7 @@ public class BossArm : MonoBehaviour {
     private GameObject player;
     public GameObject rock;
     private GameObject scene;
+    private float distanceToPlayer;
 
     private bool invoked = false;
 
@@ -22,111 +23,116 @@ public class BossArm : MonoBehaviour {
 	void Start () {
         player = GameObject.Find("Player");
         scene = GameObject.Find("Scene");
+        player = GameObject.Find("Player");
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (attack1)
+        distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+        if (distanceToPlayer < 20)
         {
-            if (timer < 15)
+            if (attack1)
             {
-                HorizontalAttack(10, 2);
-                timer++;
+                if (timer < 15)
+                {
+                    HorizontalAttack(10, 2);
+                    timer++;
+                }
+                else if (timer < 20)
+                {
+                    HorizontalAttack(-30, -6);
+                    timer++;
+                }
+                else if (timer < 66.5f)
+                {
+                    HorizontalAttack(-30, 0);
+                    timer++;
+                }
+                else if (timer < 160)
+                {
+                    HorizontalAttack(15, 0);
+                    timer++;
+                }
+                else
+                {
+                    timer = 0;
+                    attack1 = false;
+                    attack2 = true;
+                    transform.localPosition = new Vector3(0, -1, 0);
+                }
             }
-            else if ( timer < 20)
+            else if (attack2)
             {
-                HorizontalAttack(-30, -6);
-                timer++;
+                if (timer < 40)
+                {
+                    HammerAttack(1, 25);
+                    timer++;
+                }
+                else if (timer < 60)
+                {
+                    HammerAttack(-49, -51);
+                    timer++;
+                }
+                else if (timer < 100)
+                {
+                    HammerAttack(25, 0);
+                    timer++;
+                }
+                else
+                {
+                    timer = 0;
+                    attack2 = false;
+                    attack3 = true;
+                    transform.localPosition = new Vector3(0, -1, 0);
+                }
             }
-            else if (timer < 66.5f)
+            else if (attack3)
             {
-                HorizontalAttack(-30, 0);
-                timer++;
+                if (timer < 40)
+                {
+                    HammerAttack(1, 6.5f);
+                    timer++;
+                }
+                else if (timer < 45)
+                {
+                    HammerAttack(-49, -51);
+                    timer++;
+                }
+                else if (timer < 100)
+                {
+                    HammerAttack(2.5f, 0);
+                    timer++;
+                }
+                else
+                {
+                    timer = 0;
+                    attack3 = false;
+                    attack4 = true;
+                    transform.localPosition = new Vector3(0, -1, 0);
+                }
             }
-            else if (timer < 160)
+            else if (attack4)
             {
-                HorizontalAttack(15, 0);
-                timer++;
-            }
-            else
-            {
-                timer = 0;
-                attack1 = false;
-                attack2 = true;
-                transform.localPosition = new Vector3(0, -1, 0);
-            }
-        }else if (attack2)
-        {
-            if (timer < 40)
-            {
-                HammerAttack(1,25);
-                timer++;
-            }
-            else if (timer < 60)
-            {
-                HammerAttack(-49,-51);
-                timer++;
-            }
-            else if (timer < 100)
-            {
-                HammerAttack(25, 0);
-                timer++;
-            }
-            else
-            {
-                timer = 0;
-                attack2 = false;
-                attack3 = true;
-                transform.localPosition = new Vector3(0, -1, 0);
-            }
-        }
-        else if (attack3)
-        {
-            if (timer < 40)
-            {
-                HammerAttack(1, 6.5f);
-                timer++;
-            }
-            else if (timer < 45)
-            {
-                HammerAttack(-49, -51);
-                timer++;
-            }
-            else if (timer < 100)
-            {
-                HammerAttack(2.5f, 0);
-                timer++;
-            }
-            else
-            {
-                timer = 0;
-                attack3 = false;
-                attack4 = true;
-                transform.localPosition = new Vector3(0, -1, 0);
-            }
-        }
-        else if (attack4)
-        {
-            if (!invoked)
-            {
-                InvokeAttack();
-                invoked = true;
-            }
-            if(timer > 300)
-            {
-                timer = 0;
-                attack4 = false;
-                attack1 = true;
-                invoked = false;
-                transform.localPosition = new Vector3(0, -1, 0);
-            }
-            else
-            {
-                timer++;
-            }
-            
-        }
+                if (!invoked)
+                {
+                    InvokeAttack();
+                    invoked = true;
+                }
+                if (timer > 300)
+                {
+                    timer = 0;
+                    attack4 = false;
+                    attack1 = true;
+                    invoked = false;
+                    transform.localPosition = new Vector3(0, -1, 0);
+                }
+                else
+                {
+                    timer++;
+                }
 
+            }
+        }
 
     }
 

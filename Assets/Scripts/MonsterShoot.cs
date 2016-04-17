@@ -10,6 +10,8 @@ public class MonsterShoot : MonoBehaviour {
     private float direction;
     //private float blastDirection;
 
+    private GameObject scene;
+
     private Vector2 shootDirection;
 
     public Quaternion rotation = Quaternion.identity;
@@ -31,6 +33,7 @@ public class MonsterShoot : MonoBehaviour {
     {
         Debug.Log("Shoot monster ready");
         player = GameObject.Find("Player");
+        scene = GameObject.Find("Scene");
     }
 
     // Update is called once per frame
@@ -40,7 +43,7 @@ public class MonsterShoot : MonoBehaviour {
         //v_diff = (player.transform.position - transform.position);
         //atanPlayer = Mathf.Atan2(v_diff.y, v_diff.x);
 
-        if (distanceToPlayer < 10 && distanceToPlayer > 2)
+        if (distanceToPlayer < 20 && distanceToPlayer > 2)
         {
 
             source.clip = attackAudio;
@@ -84,6 +87,7 @@ public class MonsterShoot : MonoBehaviour {
     void Throw()
     {
         GameObject go = (GameObject)Instantiate(shootPrefab, transform.TransformPoint(3f, 0, 0), transform.rotation);
+        go.transform.parent = scene.transform;
         shootDirection = player.transform.position - transform.position;
         go.GetComponent<Rigidbody2D>().AddForce(shootDirection * propulsionForce, ForceMode2D.Impulse);
         Destroy(go, 10);
