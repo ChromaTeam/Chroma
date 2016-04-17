@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
 
-using System.Collections;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour 
 {
 	[SerializeField]
-	private Skill[] m_Skills;
+	private float m_AttractSpeed;
 
 	[SerializeField]
-	private SetParameter[] m_MusicParameters;
+	private Transform m_OrbSpawnPosition;
+
+	[SerializeField]
+	private List<Orb> m_Orbs;
 
 	private int m_activeSkillCounter = -1;
 
@@ -20,14 +23,33 @@ public class Player : MonoBehaviour
     {
         hitTimer++;
     }
+		
+	public void Attract()
+	{		
+		int attractOrbIndex = m_activeSkillCounter + 1;
+		if (attractOrbIndex == m_Orbs.Count)
+		{
+			return;
+		}
 
+		m_Orbs[attractOrbIndex].AttractTo(m_AttractSpeed, transform.position);
+	}
 
+	public void StopAttracting()
+	{
+		int attractOrbIndex = m_activeSkillCounter + 1;
+		if (attractOrbIndex == m_Orbs.Count)
+		{
+			return;
+		}
+
+		m_Orbs[attractOrbIndex].StopAttracting();
+	}
+		
     public void GainSkill()
 	{
-		m_activeSkillCounter = Mathf.Min(m_Skills.Length - 1, m_activeSkillCounter + 1);
+		m_activeSkillCounter = Mathf.Min(m_Orbs.Count - 1, m_activeSkillCounter + 1);
 		SetSkill(true, m_activeSkillCounter);
-
-		m_MusicParameters[m_activeSkillCounter].Play();
 	}
 
 	public void LoseSkill()
@@ -38,14 +60,14 @@ public class Player : MonoBehaviour
 		}
 
 		SetSkill(false, m_activeSkillCounter);
-		m_MusicParameters[m_activeSkillCounter].Rewind();
+		m_Orbs[m_activeSkillCounter].Spawned(m_OrbSpawnPosition.position);
 
 		m_activeSkillCounter = Mathf.Max(-1, m_activeSkillCounter - 1);
 	}
 
 	private void SetSkill(bool isEnabled, int counter)
 	{
-		m_Skills[m_activeSkillCounter].enabled = isEnabled;
+		m_Orbs[m_activeSkillCounter].EnableSkill(isEnabled);
 	}
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -54,7 +76,13 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Just found a new color orbe");
             GainSkill();
-            Destroy(other.gameObject);
+            
+			//hit an orb
+			Orb orb = other.gameObject.GetComponent<Orb>();
+			if (orb != null)
+			{				
+				orb.Collected();
+			}
         }
     }
 
@@ -69,7 +97,6 @@ public class Player : MonoBehaviour
                 LoseSkill();
                 hitTimer = 0;
             }
-
         }
     }
 }

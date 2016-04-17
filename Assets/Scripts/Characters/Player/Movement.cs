@@ -11,6 +11,8 @@ public class Movement : Skill
 
 	private Vector2 m_Velocity;
 
+	public bool move;
+
 	private void OnDisable()
 	{
 		//script disabled since we lost the power to move, reset velocity to zero
