@@ -98,12 +98,13 @@ public class Player : MonoBehaviour
         if(other.tag == "Orbe")
         {
             Debug.Log("Just found a new color orbe");
-            GainSkill();
-            
+			int nextSkill = Mathf.Min(m_Orbs.Count - 1, m_activeSkillCounter + 1);
+			            
 			//hit an orb
 			Orb orb = other.gameObject.GetComponent<Orb>();
-			if (orb != null)
+			if (orb != null && orb == m_Orbs[nextSkill])
 			{				
+				GainSkill();
 				orb.Collected();
 			}
         }
