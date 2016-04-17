@@ -84,6 +84,17 @@ public class Player : MonoBehaviour
 				orb.Collected();
 			}
         }
+        //poing du boss uniquement
+        if (other.tag == "Enemy")
+        {
+            Debug.Log("Hit by boss fist");
+            if (hitTimer > 50)
+            {
+                Debug.Log("Ennemy and stayed enough to be hit !");
+                LoseSkill();
+                hitTimer = 0;
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
