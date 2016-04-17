@@ -2,7 +2,7 @@
 	Properties {
 		_Color ("Color", Color) = (0.25,0.75,0.5,1)
 		_MainTex ("Base (RGB)", 2D) = "white" {}
-		_Threshold ("Threshold", Range(-3.1416,3.1416)) = 0
+		_Threshold ("Threshold", Range(0,3.1416)) = 0
 		_Intensity ("Intensity", Range(0.0,1.0)) = 0.5
 		_Saturation ("Saturation", Range(0.0,1.0)) = 1
 	}
@@ -81,8 +81,8 @@
 				
 				fixed4 output = fixed4(0,0,0,0);
 
-				output.rgb = (original.rgb * _Color.rgb * _Intensity * (originalhsv.x - colorhsv.x - _Threshold + 3.1416)/6.2832) + // Calcul du produit des couleurs
-								(hsv_to_rgb(fixed3(0,0,originalhsv.z)) * _Intensity * (_Threshold - (originalhsv.x - colorhsv.x) + 3.1416)/6.2832) + // Calcul des niveaux de gris
+				output.rgb = (original.rgb * _Color.rgb * _Intensity * (abs(originalhsv.x - colorhsv.x) - _Threshold + 3.1416)/6.2832) + // Calcul du produit des couleurs
+								(hsv_to_rgb(fixed3(0,0,originalhsv.z)) * _Intensity * (_Threshold - abs(originalhsv.x - colorhsv.x) + 3.1416)/6.2832) + // Calcul des niveaux de gris
 								original.rgb * (1 - _Intensity); // Calcul de la valeur originale
 								
 				fixed3 outputhsv = rgb_to_hsv_no_clip(output.rgb);

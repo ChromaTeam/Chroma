@@ -7,7 +7,7 @@ namespace ChromaTeam
     [AddComponentMenu("Custom/ChooseTone")]
     public class ChooseTone : UnityStandardAssets.ImageEffects.ImageEffectBase
 	{
-        [Range(-3.1416f,3.1416f)]
+        [Range(0.0f,3.1416f)]
         public float threshold;
         [Range(0,1)]
         public float saturation;
