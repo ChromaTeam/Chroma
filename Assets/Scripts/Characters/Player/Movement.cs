@@ -23,7 +23,7 @@ public class Movement : Skill
 		{
 			return;
 		}
-
+		
 		//normalize vector if needed
 		if (axisValues.magnitude > 1f)
 		{
@@ -33,7 +33,7 @@ public class Movement : Skill
 		//only use x value to move 
 		m_Velocity.x         = axisValues.x * m_Speed;
 		m_Velocity.y         = m_Rigidbody.velocity.y;
-
+		
 		m_Rigidbody.velocity = m_Velocity;
 	}
 }
