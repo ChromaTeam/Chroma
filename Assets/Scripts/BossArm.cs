@@ -53,7 +53,7 @@ public class BossArm : MonoBehaviour {
                 timer = 0;
                 attack1 = false;
                 attack2 = true;
-                transform.localPosition = new Vector3(0, 0, 0);
+                transform.localPosition = new Vector3(0, -1, 0);
             }
         }else if (attack2)
         {
@@ -77,7 +77,7 @@ public class BossArm : MonoBehaviour {
                 timer = 0;
                 attack2 = false;
                 attack3 = true;
-                transform.localPosition = new Vector3(0, 0, 0);
+                transform.localPosition = new Vector3(0, -1, 0);
             }
         }
         else if (attack3)
@@ -102,7 +102,7 @@ public class BossArm : MonoBehaviour {
                 timer = 0;
                 attack3 = false;
                 attack4 = true;
-                transform.localPosition = new Vector3(0, 0, 0);
+                transform.localPosition = new Vector3(0, -1, 0);
             }
         }
         else if (attack4)
@@ -118,7 +118,7 @@ public class BossArm : MonoBehaviour {
                 attack4 = false;
                 attack1 = true;
                 invoked = false;
-                transform.localPosition = new Vector3(0, 0, 0);
+                transform.localPosition = new Vector3(0, -1, 0);
             }
             else
             {
