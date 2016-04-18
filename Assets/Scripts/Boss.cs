@@ -30,7 +30,9 @@ public class Boss : MonoBehaviour {
 
         if (bossLives < 1)
         {
-            Destroy(transform);
+            Destroy(gameObject);
+            Application.LoadLevel("Menu");
+            //SceneManager.LoadScene("Menu");
         }
     }
 
