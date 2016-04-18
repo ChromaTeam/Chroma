@@ -27,5 +27,20 @@ public class Boss : MonoBehaviour {
             rotation.eulerAngles = new Vector3(0, 0, 0);
             transform.rotation = rotation;
         }
+
+        if (bossLives < 1)
+        {
+            Destroy(transform);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Shoot")
+        {
+            Debug.Log("Boss has been hit");
+            bossLives = bossLives - 50;
+        }
+
     }
 }
