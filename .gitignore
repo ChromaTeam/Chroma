@@ -49,6 +49,9 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# Build files
+*.app
+
 # Windows
 # =========================
 
