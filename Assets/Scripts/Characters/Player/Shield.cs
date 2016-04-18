@@ -9,6 +9,9 @@ public class Shield : Skill
 	[SerializeField]
 	private Player m_Player;
 
+	[SerializeField]
+	private Animator m_Animator;
+
 	private bool m_IsActive;
 
 	private float m_DelayCounter;
@@ -32,6 +35,8 @@ public class Shield : Skill
 		m_Player.SetInvulnerable(m_IsActive);
 
 		m_DelayCounter = Time.time;
+
+		m_Animator.SetTrigger("Shield_On");
 	}
 
 	public void ShieldButtonUp()
@@ -41,7 +46,13 @@ public class Shield : Skill
 			return;
 		}
 
+		if (m_IsActive)
+		{
+			m_Animator.SetTrigger("Shield_Off");
+		}
+
 		m_IsActive = false;
 		m_Player.SetInvulnerable(m_IsActive);
+
 	}
 }

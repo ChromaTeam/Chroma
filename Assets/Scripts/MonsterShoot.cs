@@ -66,7 +66,7 @@ public class MonsterShoot : MonoBehaviour {
                 //blastDirection = 1;
             }
             timer++;
-            if (timer > 100)
+            if (timer > 200)
             {
                 timer = 0;
                 Throw();
