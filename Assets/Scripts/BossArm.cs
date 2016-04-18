@@ -11,7 +11,7 @@ public class BossArm : MonoBehaviour {
     public bool attack3 = false;
     //chute de pierre
     public bool attack4 = false;
-    private int timer = 0;
+    private float timer = 0;
     private GameObject player;
     public GameObject rock;
     private GameObject scene;
@@ -36,22 +36,22 @@ public class BossArm : MonoBehaviour {
                 if (timer < 15)
                 {
                     HorizontalAttack(10, 2);
-                    timer++;
+                    timer = timer + 3;
                 }
                 else if (timer < 20)
                 {
                     HorizontalAttack(-30, -6);
-                    timer++;
+                    timer = timer + 3;
                 }
                 else if (timer < 66.5f)
                 {
                     HorizontalAttack(-30, 0);
-                    timer++;
+                    timer = timer + 3;
                 }
                 else if (timer < 160)
                 {
                     HorizontalAttack(15, 0);
-                    timer++;
+                    timer = timer + 3;
                 }
                 else
                 {
@@ -66,17 +66,17 @@ public class BossArm : MonoBehaviour {
                 if (timer < 40)
                 {
                     HammerAttack(1, 25);
-                    timer++;
+                    timer = timer + 3;
                 }
                 else if (timer < 60)
                 {
                     HammerAttack(-49, -51);
-                    timer++;
+                    timer = timer + 3;
                 }
                 else if (timer < 100)
                 {
                     HammerAttack(25, 0);
-                    timer++;
+                    timer = timer + 3;
                 }
                 else
                 {
@@ -91,17 +91,17 @@ public class BossArm : MonoBehaviour {
                 if (timer < 40)
                 {
                     HammerAttack(1, 6.5f);
-                    timer++;
+                    timer = timer + 3;
                 }
                 else if (timer < 45)
                 {
                     HammerAttack(-49, -51);
-                    timer++;
+                    timer = timer + 3;
                 }
                 else if (timer < 100)
                 {
                     HammerAttack(2.5f, 0);
-                    timer++;
+                    timer = timer + 3;
                 }
                 else
                 {
@@ -128,7 +128,7 @@ public class BossArm : MonoBehaviour {
                 }
                 else
                 {
-                    timer++;
+                    timer = timer + 3;
                 }
 
             }
