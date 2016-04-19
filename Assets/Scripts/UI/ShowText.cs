@@ -66,6 +66,7 @@ public class ShowText : MonoBehaviour {
 						m_writingText = false;
 			
 						ButtonUI.gameObject.SetActive(true);
+						ButtonUI.Select();
 					}
 				}
 			}

@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+
 using System.Collections;
 
 public class Boss : MonoBehaviour {
@@ -31,8 +33,7 @@ public class Boss : MonoBehaviour {
         if (bossLives < 1)
         {
             Destroy(gameObject);
-            Application.LoadLevel("Menu");
-            //SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("Menu");
         }
     }
 

@@ -8,7 +8,8 @@ public class FirstLevelEvents : MonoBehaviour {
 	public GameObject Narration2;
 	public GameObject Narration3;
 	public GameObject Narration4;
-	public GameObject Player;
+
+	public Animator StatueAnimator;
 	
 	void Start() {
 		OnNarration1();
@@ -60,6 +61,7 @@ public class FirstLevelEvents : MonoBehaviour {
 	
 	public void OnPlay () {
 		Narration4.SetActive(false);
-		Player.SetActive(true);
+
+		StatueAnimator.enabled = true;
 	}
 }

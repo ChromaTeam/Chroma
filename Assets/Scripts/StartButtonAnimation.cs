@@ -23,7 +23,7 @@ public class StartButtonAnimation : MonoBehaviour {
     
     void OnDisable () 
     {
-        if(animator)
+		if(animator && gameObject.activeInHierarchy)
         {
             animator.SetBool("Awake", false );
         }       
