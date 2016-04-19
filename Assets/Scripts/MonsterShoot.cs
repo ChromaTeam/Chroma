@@ -47,7 +47,7 @@ public class MonsterShoot : MonoBehaviour {
         {
 
             source.clip = attackAudio;
-            if (!source.isPlaying)
+            if (!source.isPlaying && source.enabled)
             {
                 source.Play();
             }
@@ -77,7 +77,7 @@ public class MonsterShoot : MonoBehaviour {
         {
             //Default animation
             source.clip = normalAudio;
-            if (!source.isPlaying)
+            if (!source.isPlaying && source.enabled)
             {
                 source.Play();
             }

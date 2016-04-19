@@ -42,7 +42,7 @@ public class Monster : MonoBehaviour {
         if (distanceToPlayer < 20 && distanceToPlayer > 2)
         {
             source.clip = attackAudio;
-            if (!source.isPlaying)
+            if (!source.isPlaying && source.enabled)
             {
                 source.Play();
             }
@@ -66,7 +66,7 @@ public class Monster : MonoBehaviour {
         else if (distanceToAnchor > 2)
         {
             source.clip = normalAudio;
-            if (!source.isPlaying)
+            if (!source.isPlaying && source.enabled)
             {
                 source.Play();
             }
