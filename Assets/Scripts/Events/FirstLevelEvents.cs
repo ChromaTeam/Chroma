@@ -15,7 +15,7 @@ public class FirstLevelEvents : MonoBehaviour {
 	}
 
 	public void OnNarration1 () {
-		Player.SetActive(false);
+		//Player.SetActive(false);
 		Narration1.SetActive(true);
 		
 		/*ShowText showTextNarration1 = Narration1.GetComponent<ShowText>();
