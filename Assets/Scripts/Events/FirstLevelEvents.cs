@@ -10,6 +10,7 @@ public class FirstLevelEvents : MonoBehaviour {
 	public GameObject Narration4;
 
 	public Animator StatueAnimator;
+	public GameObject Music;
 	
 	void Start() {
 		OnNarration1();
@@ -63,5 +64,6 @@ public class FirstLevelEvents : MonoBehaviour {
 		Narration4.SetActive(false);
 
 		StatueAnimator.enabled = true;
+		Music.SetActive(true);
 	}
 }

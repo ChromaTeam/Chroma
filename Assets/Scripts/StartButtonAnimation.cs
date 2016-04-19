@@ -11,12 +11,9 @@ public class StartButtonAnimation : MonoBehaviour {
     }
     
     void OnEnable () 
-    {
-        Debug.Log("I'm Wide Awake !");
-        
+    {   
         if(animator)
         {
-            Debug.Log("And So Are You !");
             animator.SetBool("Awake", true );
         }       
     }
