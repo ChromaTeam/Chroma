@@ -10,6 +10,7 @@ public class FirstLevelEvents : MonoBehaviour {
 	public GameObject Narration4;
 
 	public Animator StatueAnimator;
+	public Animator ShakeCamera;
 	public GameObject Music;
 	
 	void Start() {
@@ -65,5 +66,7 @@ public class FirstLevelEvents : MonoBehaviour {
 
 		StatueAnimator.enabled = true;
 		Music.SetActive(true);
+			
+		ShakeCamera.SetBool("ColorsOut", true);
 	}
 }
