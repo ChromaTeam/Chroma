@@ -8,6 +8,7 @@ public class FirstLevelEvents : MonoBehaviour {
 	public GameObject Narration2;
 	public GameObject Narration3;
 	public GameObject Narration4;
+	public GameObject Narration5;
 
 	public Animator StatueAnimator;
 	public Animator ShakeCamera;
@@ -62,7 +63,9 @@ public class FirstLevelEvents : MonoBehaviour {
 			showTextNarration4.Play();
 	}
 	
-	public void OnPlay () {
+	public void OnNarration5 () {
+		ShowText showTextNarration5 = Narration5.GetComponent<ShowText>();
+		
 		Narration4.SetActive(false);
 
 		StatueAnimator.enabled = true;
@@ -71,5 +74,23 @@ public class FirstLevelEvents : MonoBehaviour {
 		ShakeCamera.SetBool("ColorsOut", true);
 		
 		CameraFollow.enabled = true;
+		
+		StartCoroutine (LateNarration());
+	}
+	
+	public IEnumerator LateNarration() {
+		ShowText showTextNarration5 = Narration5.GetComponent<ShowText>();
+		
+		yield return new WaitForSeconds(3);
+		
+		Narration5.SetActive(true);
+		
+		if(showTextNarration5)
+			showTextNarration5.Play();
+		
+	}
+	
+	public void OnPlay () {
+		Narration5.SetActive(false);
 	}
 }

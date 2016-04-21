@@ -58,6 +58,12 @@ public class ShowText : MonoBehaviour {
 					if(text[m_writtenTextLength - 1] == '.') {
 						m_pauseTime = 0.5f;
 					}
+					else if(text[m_writtenTextLength - 1] == '!') {
+						m_pauseTime = 0.5f;
+					}
+					else if(text[m_writtenTextLength - 1] == '?') {
+						m_pauseTime = 0.5f;
+					}
 					else if(text[m_writtenTextLength - 1] == '\n') {
 						m_pauseTime = 1f;
 					}

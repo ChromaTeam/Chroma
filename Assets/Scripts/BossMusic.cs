@@ -20,6 +20,7 @@ public class BossMusic : MonoBehaviour
 	private void Play()
 	{
 		m_AudioSource.Play();
+		m_MusicParameter.StopTheme();
 		m_MusicParameter.Play();
 	}
 }

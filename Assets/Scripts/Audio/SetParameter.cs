@@ -15,6 +15,9 @@ public class SetParameter : MonoBehaviour
 	private string m_ParameterName;
 
 	[SerializeField]
+	private string m_ThemeParameterName;
+
+	[SerializeField]
 	private AnimationCurve m_Curve;
 
 	[SerializeField]
@@ -65,5 +68,10 @@ public class SetParameter : MonoBehaviour
 
 		m_Dir   = -1;
 		enabled = true;
+	}
+
+	public void StopTheme()
+	{
+		m_Mixer.SetFloat(m_ThemeParameterName, -80);
 	}
 }
