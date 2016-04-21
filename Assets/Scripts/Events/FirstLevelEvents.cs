@@ -12,6 +12,7 @@ public class FirstLevelEvents : MonoBehaviour {
 	public Animator StatueAnimator;
 	public Animator ShakeCamera;
 	public GameObject Music;
+	public Follow CameraFollow;
 	
 	void Start() {
 		OnNarration1();
@@ -68,5 +69,7 @@ public class FirstLevelEvents : MonoBehaviour {
 		Music.SetActive(true);
 			
 		ShakeCamera.SetBool("ColorsOut", true);
+		
+		CameraFollow.enabled = true;
 	}
 }

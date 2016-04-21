@@ -20,8 +20,8 @@ public class Follow : MonoBehaviour
 	void Update() 
 	{
 		//only get x coordinate of target
-		m_Position.x = m_Target.position.x + Math.Sign(m_Delta.x) * 3.5f;
-		m_Position.y = m_Target.position.y + 2f;
+		m_Position.x = m_Target.position.x + Math.Sign(m_Delta.x) * 2.5f;
+		m_Position.y = m_Target.position.y + 1.75f;
 		m_Position.z = transform.position.z;
 		
 		m_Delta = new Vector2(m_Position.x - transform.position.x, m_Position.y - transform.position.y);

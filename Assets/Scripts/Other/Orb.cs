@@ -9,6 +9,12 @@ public class Orb : MonoBehaviour
 	[SerializeField]
 	private SetParameter m_MusicParameter;
 
+	[SerializeField]
+	private Camera m_ColorCamera;
+
+	[SerializeField]
+	private ChooseTone m_MainCameraTone;
+
 	private bool m_IsAttracting;
 
 	private float m_Speed;
@@ -30,10 +36,14 @@ public class Orb : MonoBehaviour
 		if (isEnabled)
 		{
 			m_MusicParameter.Play();
+			m_ColorCamera.enabled = true;
+			m_MainCameraTone.saturation += 1/5;
 		}
 		else
 		{
 			m_MusicParameter.Rewind();
+			m_ColorCamera.enabled = false;
+			m_MainCameraTone.saturation -= 1/5;
 		}
 	}
 
