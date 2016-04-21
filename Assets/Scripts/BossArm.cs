@@ -19,11 +19,16 @@ public class BossArm : MonoBehaviour {
 
     private bool invoked = false;
 
-	// Use this for initialization
-	void Start () {
+    public AudioClip attack1Audio;
+    public AudioClip attack2Audio;
+    public AudioClip attack3Audio;
+    public AudioSource source;
+
+    // Use this for initialization
+    void Start () {
         player = GameObject.Find("Player");
         scene = GameObject.Find("Scene");
-        player = GameObject.Find("Player");
+        source.clip = attack1Audio;
     }
 	
 	// Update is called once per frame
@@ -47,6 +52,8 @@ public class BossArm : MonoBehaviour {
                 {
                     HorizontalAttack(-30, 0);
                     timer = timer + 3;
+                    source.clip = attack1Audio;
+                    source.Play();
                 }
                 else if (timer < 160)
                 {
@@ -72,6 +79,8 @@ public class BossArm : MonoBehaviour {
                 {
                     HammerAttack(-49, -51);
                     timer = timer + 3;
+                    source.clip = attack2Audio;
+                    source.Play();
                 }
                 else if (timer < 100)
                 {
@@ -117,6 +126,8 @@ public class BossArm : MonoBehaviour {
                 {
                     InvokeAttack();
                     invoked = true;
+                    source.clip = attack3Audio;
+                    source.Play();
                 }
                 if (timer > 300)
                 {
