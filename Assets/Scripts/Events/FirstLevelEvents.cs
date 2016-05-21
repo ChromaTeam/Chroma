@@ -94,7 +94,7 @@ public class FirstLevelEvents : MonoBehaviour {
 		StatueAnimator.enabled = true;
 		Music.SetActive(true);
 			
-		ShakeCamera.SetBool("ColorsOut", true);
+		ShakeCamera.SetTrigger("ColorsOut");
 		
 		CameraFollow.enabled = true;
 		

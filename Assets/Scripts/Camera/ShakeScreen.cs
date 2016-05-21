@@ -22,7 +22,7 @@ public class ShakeScreen : MonoBehaviour {
 	public void Shake () {
 		m_timesShaken++;
 		
-		shakeCamera.SetBool("ShakeIt", true);
+		shakeCamera.SetTrigger("ShakeIt");
 		
 		if(m_timesShaken >= times) {
 			m_timesShaken = 0;
