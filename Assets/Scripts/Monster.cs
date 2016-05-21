@@ -39,7 +39,7 @@ public class Monster : MonoBehaviour {
         //atanAnchor = Mathf.Atan2(anchorDiff.y, anchorDiff.x);
 
         //Si le monstre n'est pas loin du joueur il se dirige vers lui et lance un son / musique d'attaque
-        if (distanceToPlayer < 20 && distanceToPlayer > 2)
+        if (distanceToPlayer < 12 && distanceToPlayer > 2)
         {
             source.clip = attackAudio;
             if (!source.isPlaying && source.enabled)
