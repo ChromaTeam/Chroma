@@ -37,6 +37,7 @@ public class Shield : Skill
 		m_DelayCounter = Time.time;
 
 		m_Animator.SetTrigger("Shield_On");
+        Debug.Log("Shield on");
 	}
 
 	public void ShieldButtonUp()

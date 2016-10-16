@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using UnityEngine.Audio;
 
 using System.Collections.Generic;
+using UnityStandardAssets.ImageEffects;
 
 public class Player : MonoBehaviour 
 {
@@ -18,19 +19,44 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private UnityEvent OnHit;
 
-	private int m_activeSkillCounter = -1;
+	public int m_activeSkillCounter = 0;
 
 	private bool m_IsInvulnerable;
+
+    private float colorSaturation = 0;
+
+    private GameObject mainCamera;
 
     //Timer between each hit the player receive by staying close to an ennemy
     private int hitTimer = 0;
 
+    void Start()
+    {
+        mainCamera = GameObject.Find("Main Camera");
+    }
+
     void Update()
     {
         hitTimer++;
+
+
+        //here the saturation depend of m_activeSkillCounter (m_activeSkillCounter = 7 means the saturation must be at 100%
+        if (m_activeSkillCounter < 0)
+        {
+            colorSaturation = 0;
+        }
+        else
+        {
+            float m_activeSkillCounter_float = m_activeSkillCounter + 1;
+            colorSaturation = m_activeSkillCounter_float / 7;
+        }
+        //Debug.Log(m_activeSkillCounter  + " et " + colorSaturation);
+        mainCamera.GetComponent<ColorCorrectionCurves>().saturation = colorSaturation;
+        //colorSaturation
+
     }
-		
-	public void Attract()
+
+    public void Attract()
 	{		
 		int attractOrbIndex = m_activeSkillCounter + 1;
 		if (attractOrbIndex == m_Orbs.Count)
@@ -134,4 +160,5 @@ public class Player : MonoBehaviour
             }
         }
     }
+
 }

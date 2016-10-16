@@ -12,7 +12,10 @@ public class DoubleJump : Skill
 	[SerializeField]
 	private Glide m_Glide;
 
-	private bool m_HasJumped;
+    [SerializeField]
+    private Animator m_Animator;
+
+    private bool m_HasJumped;
 
 	public void OnTerrainTriggerEnter(Collider2D trigger)
 	{
@@ -36,6 +39,8 @@ public class DoubleJump : Skill
 		if (m_AllowGliding)
 		{
 			m_Glide.ResetGlided();
-		}
+            m_Animator.SetTrigger("Parachute_On");
+            Debug.Log("ça plane pour moi...");
+        }
 	}
 }

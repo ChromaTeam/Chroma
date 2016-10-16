@@ -10,8 +10,9 @@ public class FirstLevelEvents : MonoBehaviour {
 	public GameObject Narration4;
 	public GameObject Narration5;
 	public GameObject SkipButton;
+    public GameObject Tutorial;
 
-	public Animator StatueAnimator;
+    public Animator StatueAnimator;
 	public Animator ShakeCamera;
 	public GameObject Music;
 	public Follow CameraFollow;
@@ -28,14 +29,20 @@ public class FirstLevelEvents : MonoBehaviour {
 		Narration4.SetActive(false);
 		Narration5.SetActive(false);
 		SkipButton.SetActive(true);
-		
-		/*ShowText showTextNarration1 = Narration1.GetComponent<ShowText>();
+        Tutorial.SetActive(false);
+
+        /*ShowText showTextNarration1 = Narration1.GetComponent<ShowText>();
 		
 		if(showTextNarration1)
 			showTextNarration1.Play();*/
-	}
-	
-	public void OnNarration2 () {
+    }
+
+    public void OnTutorial1()
+    {
+        Tutorial.SetActive(true);
+    }
+
+    public void OnNarration2 () {
 		ShowText showTextNarration2 = Narration2.GetComponent<ShowText>();
 		
 		Narration1.SetActive(false);

@@ -12,7 +12,10 @@ public class Glide : Skill
 	[SerializeField]
 	private Jump m_Jump;
 
-	private bool m_IsFalling;
+    [SerializeField]
+    private Animator m_Animator;
+
+    private bool m_IsFalling;
 	private bool m_IsButtonDown;
 	private bool m_IsGliding;
 	private bool m_HasGlided;
@@ -25,7 +28,9 @@ public class Glide : Skill
 	{
 		if (m_IsGliding)
 		{
-			SetVelocity(m_Rigidbody.velocity.x, m_Speed);
+            m_Animator.SetTrigger("Parachute_On");
+            Debug.Log("ça plane pour moi...");
+            SetVelocity(m_Rigidbody.velocity.x, m_Speed);
 			return;
 		}
 
@@ -35,7 +40,8 @@ public class Glide : Skill
 		m_PrevYVelocity = m_Rigidbody.velocity.y;
 
 		DoGlide();
-	}
+        
+    }
 
 	private void OnDisable()
 	{
@@ -50,7 +56,7 @@ public class Glide : Skill
 	public void GlideButtonDown()
 	{
 		m_IsButtonDown = true;
-	}
+    }
 
 	public void GlideButtonUp()
 	{
@@ -71,12 +77,16 @@ public class Glide : Skill
 		m_HasGlided = true;
 
 		m_IsFalling = false;
-	}
+
+        m_Animator.SetTrigger("Parachute_On");
+        Debug.Log("ça plane pour moi...");
+    }
 
 	public void ResetGlided()
 	{
 		m_HasGlided = false;
-	}
+        m_Animator.SetTrigger("Parachute_Off");
+    }
 
 	private void SetVelocity(float x, float y)
 	{

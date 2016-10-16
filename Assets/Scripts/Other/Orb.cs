@@ -36,14 +36,14 @@ public class Orb : MonoBehaviour
 		if (isEnabled)
 		{
 			m_MusicParameter.Play();
-			m_ColorCamera.enabled = true;
-			m_MainCameraTone.saturation += 1/5;
+			//m_ColorCamera.enabled = true;
+			//m_MainCameraTone.saturation += 1/5;
 		}
 		else
 		{
 			m_MusicParameter.Rewind();
-			m_ColorCamera.enabled = false;
-			m_MainCameraTone.saturation -= 1/5;
+			//m_ColorCamera.enabled = false;
+			//m_MainCameraTone.saturation -= 1/5;
 		}
 	}
 

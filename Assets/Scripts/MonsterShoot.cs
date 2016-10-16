@@ -43,7 +43,7 @@ public class MonsterShoot : MonoBehaviour {
         //v_diff = (player.transform.position - transform.position);
         //atanPlayer = Mathf.Atan2(v_diff.y, v_diff.x);
 
-        if (distanceToPlayer < 12 && distanceToPlayer > 2)
+        if (distanceToPlayer < 18 && distanceToPlayer > 2)
         {
 
             source.clip = attackAudio;
